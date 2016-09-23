@@ -3,3 +3,9 @@
 serial arduino to/from PC running python with pygame UI
 
 used for IEEE SouthEast competition mockup at UTK
+
+
+#### HOW TO MAKE IT WORK
+
+requires: ```pygame, pyserial```
+run using ```python ./simulator/sim2-1.py```
