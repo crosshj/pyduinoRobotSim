@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 """
-uses wxpython 
+uses wxpython
 
-	get --- http://wxpython.org/download.php  
+	get --- http://wxpython.org/download.php
 	    --- http://downloads.sourceforge.net/wxpython/wxPython2.8-win32-unicode-2.8.12.1-py27.exe
 
 
@@ -19,7 +19,7 @@ def scan():
 	ports = []
 	for i in range(256):
 		try:
-			s = serial.Serial(i)
+			s = serial.Serial(str(i))
 			ports.append( (i, s.portstr))
 			s.close()   # explicit close 'cause of delayed GC in java
 		except serial.SerialException:
@@ -37,26 +37,26 @@ class MyDialog(wx.Dialog):
 		self.selected = self.port_list[0]
 		wx.Button(self, 1, 'Okay', (80, 60))
 		wx.ComboBox(self, -1, pos=(50, 25), size=(150, -1), choices=self.port_list, style=wx.CB_READONLY,value=self.port_list[0])
-		
-	
+
+
 		self.Bind(wx.EVT_BUTTON, self.OnClose, id=1)
 		self.Bind(wx.EVT_COMBOBOX, self.OnSelect)
-	
+
 		self.Centre()
-	
+
 	def OnClose(self, event):
 		self.Close()
 	def OnSelect(self, event):
 			self.selected = self.port_list[event.Selection]
 	def GetValue(self):
 		return self.selected
-	
+
 def Select_Port():
 	scan()
 	if len(ports) == 0:
 		return "None"
 		print "No ports found"
-	elif len(ports) == 1:  
+	elif len(ports) == 1:
 		port_list=[]
 		for n,s in ports:
 			port_list.append(s)
@@ -67,7 +67,7 @@ def Select_Port():
 		retval = dlg.ShowModal()
 		selected = dlg.GetValue()
 		dlg.Destroy()
-		app.MainLoop() 
+		app.MainLoop()
 		return selected
 
 
@@ -89,7 +89,7 @@ def init_com(PORT, RATE):
 	except:
 		print "Could not init com port"
 		return False
-	
+
 def do_handshake(ser):
 	ser.write(1)
 	try:
@@ -115,7 +115,7 @@ def do_handshake(ser):
 	except:
 		print "Serial port unavailable."
 		handshake1 = handshake2 = 0
-		
+
 	return (handshake1 * handshake2)
 
 
@@ -131,4 +131,3 @@ def do_handshake(ser):
 
 if __name__=='__main__':
 	Select_Port()
-	

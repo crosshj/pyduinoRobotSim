@@ -7,5 +7,10 @@ used for IEEE SouthEast competition mockup at UTK
 
 #### HOW TO MAKE IT WORK
 
-requires: ```pygame, pyserial```
+requires: ```numpy, pygame, wxPython, pyserial```
+  - numpy - Mac - ```brew install wxpython```
+  - pygame - pip pygame
+  - wxpython - Mac - ```brew install wxpython```
+  - pyserial - pip pyserial
+
 run using ```python ./simulator/sim2-1.py```
